@@ -14,11 +14,11 @@ let app = new Vue({
         firstColumn: initialData.firstColumn,
         secondColumn: initialData.secondColumn,
         thirdColumn: initialData.thirdColumn,
-        groupName: null,
-        inputOne: null,
-        inputTwo: null,
-        inputThr: null,
-        inputFor: null,
+        noteTitle: null,
+        actionOne: null,
+        actionTwo: null,
+        actionThree: null,
+        actionFour: null,
     },
     watch: {
         firstColumn: {
@@ -49,10 +49,10 @@ let app = new Vue({
             };
             localStorage.setItem(storageKey, JSON.stringify(data));
         },
-        deleteGroup(groupId) {
+        deleteNoteGroup(groupId) {
             const index = this.thirdColumn.findIndex(group => group.id === groupId);
             if (index !== -1) {
-                this.thirdColumn.splice(index, 1);
+              this.thirdColumn.splice(index, 1);
             }
         },
         updateProgress(card) {
@@ -64,58 +64,57 @@ let app = new Vue({
             }
             this.checkMoveCard();
         },
-        MoveFirstColm() {
-            this.firstColumn.forEach(card => {
-                const progress = (card.items.filter(item => item.checked).length / card.items.length) * 100;
+        moveFirstColumn() {
+            this.firstColumn.forEach(note => {
+                const progress = (note.items.filter(item => item.checked).length / note.items.length) * 100;
 
                 const isMaxSecondColumn = this.secondColumn.length >= 5;
 
                 if (progress >= 50 && !isMaxSecondColumn) {
-                    this.secondColumn.push(card);
-                    this.firstColumn.splice(this.firstColumn.indexOf(card), 1);
-                    this.MoveSecondColm();
-                }
-                else {
+                    this.secondColumn.push(note);
+                    this.firstColumn.splice(this.firstColumn.indexOf(note), 1);
+                    this.moveSecondColumn();
                 }
             });
 
         },
-        MoveSecondColm() {
-            this.secondColumn.forEach(card => {
-                const progress = (card.items.filter(item => item.checked).length / card.items.length) * 100;
+        moveSecondColumn() {
+            this.secondColumn.forEach(note => {
+                const progress = (note.items.filter(item => item.checked).length / note.items.length) * 100;
                 if (progress === 100) {
-                    card.isComplete = true;
-                    card.lastChecked = new Date().toLocaleString();
-                    this.thirdColumn.push(card);
-                    this.secondColumn.splice(this.secondColumn.indexOf(card), 1);
-                    this.MoveFirstColm();
+                    note.isComplete = true;
+                    note.lastChecked = new Date().toLocaleString();
+                    this.thirdColumn.push(note);
+                    this.secondColumn.splice(this.secondColumn.indexOf(note), 1);
+                    this.moveFirstColumn();
                 }
             })
         },
         checkMoveCard() {
-            this.MoveFirstColm();
-            this.MoveSecondColm();
+            this.moveFirstColumn();
+            this.moveSecondColumn();
         },
-        addCard() {
-            const newGroup = {
+        addNote() {
+            const newNoteGroup = {
                 id: Date.now(),
-                groupName: this.groupName,
+                noteTitle: this.noteTitle,
                 items: [
-                    { text: this.inputOne, checked: false },
-                    { text: this.inputTwo, checked: false },
-                    { text: this.inputThr, checked: false },
-                    { text: this.inputFor, checked: false },
+                    { text: this.actionOne, checked: false },
+                    { text: this.actionTwo, checked: false },
+                    { text: this.actionThree, checked: false },
+                    { text: this.actionFour, checked: false },
                 ]
-            }
-            console.log(this.firstColumn.length < 3)
+            };
+
             if (this.firstColumn.length < 3) {
-                this.firstColumn.push(newGroup)
+                this.firstColumn.push(newNoteGroup);
             }
-                this.groupName = null,
-                this.inputOne = null,
-                this.inputTwo = null,
-                this.inputThr = null,
-                this.inputFor = null
+
+            this.noteTitle = null;
+            this.actionOne = null;
+            this.actionTwo = null;
+            this.actionThree = null;
+            this.actionFour = null;
         }
-    }
-})
+    },
+});

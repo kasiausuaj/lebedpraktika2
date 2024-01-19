@@ -12,36 +12,36 @@
 <body>
     <h1 class="title">Хранение заметок</h1>
     <div id="app">
-        <form class="cardForm" @submit.prevent="addCard">
+        <form class="cardForm" @submit.prevent="addNote">
             <p>
-                <label for="GroupName">Name:</label>
-                <input id="GroupName" v-model="groupName" placeholder="название" required>
+                <label for="NoteTitle">Title:</label>
+                <input class="titlenote" id="NoteTitle" v-model="noteTitle" placeholder="title" required>
             </p>
             <p>
-                <label for="InputOne">Action 1:</label>
-                <input id="InputOne" v-model="inputOne" placeholder="Действие " required>
+                <label for="ActionOne">Action 1:</label>
+                <input id="ActionOne" v-model="actionOne" placeholder="Action" required>
             </p>
             <p>
-                <label for="InputTwo">Action 2:</label>
-                <input id="InputTwo" v-model="inputTwo" placeholder="Действие " required>
+                <label for="ActionTwo">Action 2:</label>
+                <input id="ActionTwo" v-model="actionTwo" placeholder="Action" required>
             </p>
             <p>
-                <label for="InputThr">Action 3:</label>
-                <input id="InputThr" v-model="inputThr" placeholder="Действие " required>
+                <label for="ActionThree">Action 3:</label>
+                <input id="ActionThree" v-model="actionThree" placeholder="Action" required>
             </p>
             <p>
-                <label for="InputThr">Action 4:</label>
-                <input id="InputFor" v-model="inputFor" placeholder="Действие " required>
+                <label for="ActionFour">Action 4:</label>
+                <input id="ActionFour" v-model="actionFour" placeholder="Action" required>
             </p>
             <p>
-                <input type="submit" value="Добавить">
+                <button class="btn">Добавить</button>
             </p>
         </form>
-        <div class="columns">
+        <div class="columns" style="display: flex; justify-content: space-evenly; ">
             <div class="column">
-                <h2>First column</h2>
+                <h2>First Column</h2>
                 <div class="card" v-for="group in firstColumn" :key="group.id">
-                    <h3>{{group.groupName}}</h3>
+                    <h3>{{ group.noteTitle }}</h3>
                     <ul>
                         <li v-for="item in group.items" :key="item.id">
                             <input type="checkbox" v-model="item.checked" @change="updateProgress(group)">
@@ -51,9 +51,9 @@
                 </div>
             </div>
             <div class="column">
-                <h2>Second column</h2>
+                <h2>Second Column</h2>
                 <div class="card" v-for="group in secondColumn" :key="group.id">
-                    <h3>{{group.groupName}}</h3>
+                    <h3>{{ group.noteTitle }}</h3>
                     <ul>
                         <li v-for="item in group.items" :key="item.id">
                             <input type="checkbox" v-model="item.checked" @change="updateProgress(group)">
@@ -63,10 +63,10 @@
                 </div>
             </div>
             <div class="column">
-                <h2>Thirdy column</h2>
+                <h2>Third Column</h2>
                 <div v-for="group in thirdColumn" :key="group.id">
                     <div class="card">
-                        <h3>{{ group.groupName }}</h3>
+                        <h3>{{ group.noteTitle }}</h3>
                         <ul>
                             <li v-for="item in group.items" :key="item.id">
                                 <input type="checkbox" v-model="item.checked">
@@ -74,12 +74,12 @@
                             </li>
                         </ul>
                         <p v-if="group.isComplete">{{ group.lastChecked }}</p>
-                        <button class="btn" @click="deleteGroup(group.id)">Удалить</button>
+                        <button class="btn" @click="deleteNoteGroup(group.id)">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="./js/script.js"></script>
+    </div>
+    <script src="./js/script.js"></script>
 </body>
-
 </html>

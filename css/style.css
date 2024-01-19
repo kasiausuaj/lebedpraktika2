@@ -3,54 +3,54 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-  }
-  
-  .title {
+}
+
+.title {
     text-align: center;
     color: #000000;
-  }
-  
-  .columns {
+}
+
+.columns {
     display: flex;
-  }
-  
-  .column {
+}
+
+.column {
     flex: 1;
     margin-right: 20px;
     background-color: #000000;
     color: white;
     border-radius: 5px;
     padding: 20px;
-  }
-  
-  .column:last-child {
+}
+
+.column:last-child {
     margin-right: 0;
-  }
-  
-  .card {
+}
+
+.card {
     margin-bottom: 20px;
     padding: 10px;
     background-color: #000000;
     border: 1px solid #ccc;
     color: white;
     border-radius: 5px;
-  }
-  
-  .card h3 {
+}
+
+.card h3 {
     margin-bottom: 10px;
     font-size: 18px;
-  }
-  
-  .card ul {
+}
+
+.card ul {
     list-style-type: none;
     padding: 0;
-  }
-  
-  .card li {
+}
+
+.card li {
     margin-bottom: 5px;
-  }
-  
-  .btn {
+}
+
+.btn {
     background-color: #333;
     color: #fff;
     border: none;
@@ -58,55 +58,22 @@ body {
     padding: 8px 12px;
     font-size: 14px;
     cursor: pointer;
-  }
-  
-  .btn:hover {
+}
+
+.btn:hover {
     background-color: #555;
-  }
-  
-  .cardForm {
+}
+
+.cardForm {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     border: 1px solid black;
     border-radius: 15px;
-    width: 200px;
-    padding-left: 10px;
-    margin-left: 930px;
-  }
-  
-  .cardForm p {
-    margin-bottom: 10px;
-  }
-  
-  .cardForm label {
-    font-weight: bold;
-  }
-  
-  .cardForm input[type="text"],
-  .cardForm input[type="submit"] {
-    padding: 5px;
-    font-size: 14px;
-    color: white;
-    background-color: #333;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  .cardForm input[type="button"] {
-    margin-top: 10px;
-    border-radius: 15px;
-    border: #333;
-  }
-  
-  @media (max-width: 768px) {
-    .columns {
-      flex-wrap: wrap;
-    }
-  
-    .column {
-      margin-bottom: 20px;
-    }
-  }
+    width:350px;
+    margin-left: 870px;
+    padding-left: 50px;
+}
+.titlenote{
+  margin-left: 25px;
+}
