@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue.js" defer></script>
+    <script src="./js/script.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Хранение заметок</title>
+</head>
+<body>
+    <div id="app">
+        <form class="cardForm" @submit.prevent="addCard">
+            <p>
+                <label for="GroupName">Name:</label>
+                <input id="GroupName" v-model="groupName" placeholder="название" required>
+            </p>
+            <p>
+                <label for="InputOne">Action 1:</label>
+                <input id="InputOne" v-model="inputOne" placeholder="Действие " required>
+            </p>
+            <p>
+                <label for="InputTwo">Action 2:</label>
+                <input id="InputTwo" v-model="inputTwo" placeholder="Действие " required>
+            </p>
+            <p>
+                <label for="InputThr">Action 3:</label>
+                <input id="InputThr" v-model="inputThr" placeholder="Действие " required>
+            </p>
+            <p>
+                <label for="InputThr">Action 4:</label>
+                <input id="InputFor" v-model="inputFor" placeholder="Действие " required>
+            </p>
+            <p>
+                <input type="submit" value="Добавить">
+            </p>
+        </form>
+</body>
+</html>
