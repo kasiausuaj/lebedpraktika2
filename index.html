@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/vue.js" defer></script>
-    <script src="./js/script.js" defer></script>
+    <script src="./js/vue.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <title>Хранение заметок</title>
 </head>
+
 <body>
+    <h1 class="title">Хранение заметок</h1>
     <div id="app">
         <form class="cardForm" @submit.prevent="addCard">
             <p>
@@ -35,7 +37,7 @@
                 <input type="submit" value="Добавить">
             </p>
         </form>
-        <div class="columns" style="display: flex; justify-content: space-evenly; ">
+        <div class="columns">
             <div class="column">
                 <h2>First column</h2>
                 <div class="card" v-for="group in firstColumn" :key="group.id">
@@ -61,7 +63,7 @@
                 </div>
             </div>
             <div class="column">
-                <h2>Колонка три</h2>
+                <h2>Thirdy column</h2>
                 <div v-for="group in thirdColumn" :key="group.id">
                     <div class="card">
                         <h3>{{ group.groupName }}</h3>
@@ -77,5 +79,7 @@
                 </div>
             </div>
         </div>
+        <script src="./js/script.js"></script>
 </body>
+
 </html>

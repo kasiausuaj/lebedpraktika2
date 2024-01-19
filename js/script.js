@@ -111,7 +111,7 @@ let app = new Vue({
             if (this.firstColumn.length < 3) {
                 this.firstColumn.push(newGroup)
             }
-            this.groupName = null,
+                this.groupName = null,
                 this.inputOne = null,
                 this.inputTwo = null,
                 this.inputThr = null,
