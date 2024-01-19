@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .title{
+    font-size: 25px;
+    text-align: center;
+  }
+  
+  h2 {
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+  }
+  .card {
+    background-color: #000000;
+    padding: 10px;
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 15px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .column {
+    flex: 1;
+    margin-right: 20px;
+    margin-top: 70px;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="submit"] {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .cardForm {
+    padding: 20px;
+    background-color: #ffffff;
+    width: 400px;
+    height: 250px;
+    display: flex;
+    position: relative;
+    margin-left: 930px;
+    flex-direction: column;
+  }
+  
+  .cardForm label {
+    display: inline-block;
+    font-weight: bold;
+  }
+  
+  .cardForm input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+  
+  .cardForm input[type="submit"] {
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cardForm input[type="submit"]:hover {
+    background-color: #000000;
+  }
+  .btn{
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
