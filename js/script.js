@@ -1,59 +1,26 @@
-const storageKey = 'notes-app';
-const storageData = localStorage.getItem(storageKey);
-
-const initialData = storageData ? JSON.parse(storageData) : {
-    firstColumn: [],
-    secondColumn: [],
-    thirdColumn: []
-};
-
-
-let app = new Vue({
+new Vue({
     el: '#app',
     data: {
-        firstColumn: initialData.firstColumn,
-        secondColumn: initialData.secondColumn,
-        thirdColumn: initialData.thirdColumn,
-        noteTitle: null,
-        actionOne: null,
-        actionTwo: null,
-        actionThree: null,
-        actionFour: null,
+        noteTitle: '',
+        items: [],
+        firstColumn: [],
+        secondColumn: [],
+        thirdColumn: []
     },
-    watch: {
-        firstColumn: {
-            handler(newFirstColumn) {
-                this.saveData();
-            },
-            deep: true
-        },
-        secondColumn: {
-            handler(newSecondColumn) {
-                this.saveData();
-            },
-            deep: true
-        },
-        thirdColumn: {
-            handler(newThirdColumn) {
-                this.saveData();
-            },
-            deep: true
+    mounted() {
+        if (localStorage.getItem('noteData')) {
+            const noteData = JSON.parse(localStorage.getItem('noteData'));
+            this.firstColumn = noteData.firstColumn;
+            this.secondColumn = noteData.secondColumn;
+            this.thirdColumn = noteData.thirdColumn;
         }
     },
     methods: {
-        saveData() {
-            const data = {
-                firstColumn: this.firstColumn,
-                secondColumn: this.secondColumn,
-                thirdColumn: this.thirdColumn
-            };
-            localStorage.setItem(storageKey, JSON.stringify(data));
-        },
         deleteNoteGroup(groupId) {
-            const index = this.thirdColumn.findIndex(group => group.id === groupId);
-            if (index !== -1) {
-              this.thirdColumn.splice(index, 1);
-            }
+            this.firstColumn = this.firstColumn.filter(group => group.id !== groupId);
+            this.secondColumn = this.secondColumn.filter(group => group.id !== groupId);
+            this.thirdColumn = this.thirdColumn.filter(group => group.id !== groupId);
+            this.saveDataToLocalStorage();
         },
         updateProgress(card) {
             const checkedCount = card.items.filter(item => item.checked).length;
@@ -63,6 +30,7 @@ let app = new Vue({
                 card.lastChecked = new Date().toLocaleString();
             }
             this.checkMoveCard();
+            this.checkDisableFirstColumn();
         },
         moveFirstColumn() {
             this.firstColumn.forEach(note => {
@@ -94,27 +62,51 @@ let app = new Vue({
             this.moveFirstColumn();
             this.moveSecondColumn();
         },
-        addNote() {
-            const newNoteGroup = {
-                id: Date.now(),
-                noteTitle: this.noteTitle,
-                items: [
-                    { text: this.actionOne, checked: false },
-                    { text: this.actionTwo, checked: false },
-                    { text: this.actionThree, checked: false },
-                    { text: this.actionFour, checked: false },
-                ]
-            };
-
-            if (this.firstColumn.length < 3) {
-                this.firstColumn.push(newNoteGroup);
+        checkDisableFirstColumn() {
+            if (this.secondColumn.length >= 5) {
+                const areAllSecondColumnComplete = this.secondColumn.every(note => note.isComplete);
+                this.firstColumn.forEach(note => {
+                    note.items.forEach(item => {
+                        if (areAllSecondColumnComplete) {
+                            item.disabled = true;
+                        } else {
+                            item.disabled = false;
+                        }
+                    });
+                });
             }
+        },
+        addItem() {
+            if (this.items.length < 5) {
+                this.items.push({ id: Date.now(), text: '', checked: false });
+            }
+        },
+        createNotes() {
+            if (this.noteTitle && this.items.length >= 3 && this.items.length <= 5) {
+                const newNoteGroup = {
+                    id: Date.now(),
+                    noteTitle: this.noteTitle,
+                    items: this.items,
+                    isComplete: false,
+                    lastChecked: null
+                };
 
-            this.noteTitle = null;
-            this.actionOne = null;
-            this.actionTwo = null;
-            this.actionThree = null;
-            this.actionFour = null;
+                if (this.items.some(item => item.text.trim() !== '')) {
+                    this.firstColumn.push(newNoteGroup);
+                    this.saveDataToLocalStorage();
+                }
+
+                this.noteTitle = '';
+                this.items = [];
+            }
+        },
+        saveDataToLocalStorage() {
+            const noteData = {
+                firstColumn: this.firstColumn,
+                secondColumn: this.secondColumn,
+                thirdColumn: this.thirdColumn
+            };
+            localStorage.setItem('noteData', JSON.stringify(noteData));
         }
-    },
+    }
 });
