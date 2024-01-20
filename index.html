@@ -12,29 +12,18 @@
 <body>
     <h1 class="title">Хранение заметок</h1>
     <div id="app">
-        <form class="cardForm" @submit.prevent="addNote">
+        <form class="cardForm" @submit.prevent="addItem">
             <p>
                 <label for="NoteTitle">Title:</label>
                 <input class="titlenote" id="NoteTitle" v-model="noteTitle" placeholder="title" required>
             </p>
-            <p>
-                <label for="ActionOne">Action 1:</label>
-                <input id="ActionOne" v-model="actionOne" placeholder="Action" required>
+            <p v-for="(item, index) in items" :key="index">
+                <label>{{ `Action ${index + 1}:` }}</label>
+                <input v-model="item.text" placeholder="Action" required>
             </p>
             <p>
-                <label for="ActionTwo">Action 2:</label>
-                <input id="ActionTwo" v-model="actionTwo" placeholder="Action" required>
-            </p>
-            <p>
-                <label for="ActionThree">Action 3:</label>
-                <input id="ActionThree" v-model="actionThree" placeholder="Action" required>
-            </p>
-            <p>
-                <label for="ActionFour">Action 4:</label>
-                <input id="ActionFour" v-model="actionFour" placeholder="Action" required>
-            </p>
-            <p>
-                <button class="btn">Добавить</button>
+                <button class="btn" :disabled="items.length >= 5">Add Item</button>
+                <button class="btn create-btn" @click="createNotes" :disabled="items.length === 0">Create</button>
             </p>
         </form>
         <div class="columns" style="display: flex; justify-content: space-evenly; ">
@@ -82,4 +71,5 @@
     </div>
     <script src="./js/script.js"></script>
 </body>
+
 </html>
