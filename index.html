@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +17,7 @@
                 <input class="titlenote" id="NoteTitle" v-model="noteTitle" placeholder="title" required>
             </p>
             <p v-for="(item, index) in items" :key="index">
-                <label>{{ `Action ${index + 1}:` }} </label>
+                <label>{{ `Action ${index + 1}:` }}</label>
                 <input v-model="item.text" placeholder="Action" required>
             </p>
             <p>
