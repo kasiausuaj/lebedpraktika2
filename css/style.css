@@ -12,6 +12,7 @@ body {
 
 .columns {
     display: flex;
+    justify-content: space-evenly;
 }
 
 .column {

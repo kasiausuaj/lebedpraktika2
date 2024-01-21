@@ -25,7 +25,7 @@
                 <button class="btn create-btn" @click="createNotes" :disabled="items.length === 0">Create</button>
             </p>
         </form>
-        <div class="columns" style="display: flex; justify-content: space-evenly; ">
+        <div class="columns">
             <div class="column">
                 <h2>First Column</h2>
                 <div class="card" v-for="group in firstColumn" :key="group.id">
