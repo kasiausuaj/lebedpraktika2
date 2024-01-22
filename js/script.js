@@ -102,7 +102,12 @@ new Vue({
       }
     },
     addItem() {
+      console.log(this.items)
       if (this.items.length < 5 && this.firstColumn.length < 3) {
+        if (this.items.some(item => item.text.trim() === '')) {
+          // Если есть хотя бы один пустой текст, не добавляем новую запись
+          return;
+        }
         this.items.push({ id: Date.now(), text: '', checked: false });
       }
     },
@@ -125,6 +130,8 @@ new Vue({
         this.items = [];
       }
     },
+
+
     saveDataToLocalStorage() {
       const noteData = {
         firstColumn: this.firstColumn,
