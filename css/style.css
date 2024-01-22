@@ -1,27 +1,32 @@
 body {
-    background-color: #555;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: aliceblue;
 }
 
 .title {
     text-align: center;
     color: #000000;
+    display: flex;
 }
 
 .columns {
     display: flex;
     justify-content: space-evenly;
+
 }
 
 .column {
     flex: 1;
     margin-right: 20px;
-    background-color: #000000;
+    background-color: #ccc;
     color: white;
     border-radius: 5px;
     padding: 20px;
+
 }
 
 .column:last-child {
@@ -31,7 +36,7 @@ body {
 .card {
     margin-bottom: 20px;
     padding: 10px;
-    background-color: #000000;
+    background-color: #524e4e;
     border: 1px solid #ccc;
     color: white;
     border-radius: 5px;
@@ -69,6 +74,7 @@ body {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    background-color: rgb(159, 171, 182);
     border: 1px solid black;
     border-radius: 15px;
     width:350px;

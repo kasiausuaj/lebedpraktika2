@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/vue.js"></script>
+    <script src="./js/vue.js" defer></script>
+    <script src="./js/script.js" defer></script>
     <link rel="stylesheet" href="./css/style.css">
     <title>Хранение заметок</title>
 </head>
@@ -14,7 +15,7 @@
         <form class="cardForm" @submit.prevent="addItem">
             <p>
                 <label for="NoteTitle">Title:</label>
-                <input class="titlenote" id="NoteTitle" v-model="noteTitle" placeholder="title" required>
+                <input class="titlenote" id="NoteTitle" v-model="noteTitle" placeholder="Title" required>
             </p>
             <p v-for="(item, index) in items" :key="index">
                 <label>{{ `Action ${index + 1}:` }}</label>
@@ -70,7 +71,7 @@
             </div>
         </div>
     </div>
-    <script src="./js/script.js"></script>
+
 </body>
 
 </html>
