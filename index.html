@@ -28,11 +28,12 @@
         <div class="columns">
             <div class="column">
                 <h2>First Column</h2>
-                <div class="card" v-for="group in firstColumn" :key="group.id">
+                <div class="card" v-for="(group, groupIndex) in firstColumn" :key="group.id">
                     <h3>{{ group.noteTitle }}</h3>
                     <ul>
                         <li v-for="item in group.items" :key="item.id">
-                            <input type="checkbox" v-model="item.checked" @change="updateProgress(group)">
+                            <input type="checkbox" v-model="item.checked" :disabled="isDisabled(groupIndex, item)"
+                                @change="updateProgress(group)">
                             {{ item.text }}
                         </li>
                     </ul>
