@@ -34,6 +34,7 @@
                             <input type="checkbox" v-model="item.checked" :disabled="item.disabled" @change="updateProgress(group, item)">
                             {{ item.text }}
                         </li>
+                        <button class="btn" v-if="items" @click="deleteNoteGroup(group.id)">Delete</button>
                     </ul>
                 </div>
             </div>
@@ -46,6 +47,7 @@
                             <input type="checkbox" v-model="item.checked" :disabled="item.disabled" @change="updateProgress(group, item)">
                             {{ item.text }}
                         </li>
+                        <button class="btn" v-if="items"  @click="deleteNoteGroup(group.id)">Delete</button>
                     </ul>
                 </div>
             </div>
@@ -61,7 +63,7 @@
                             </li>
                         </ul>
                         <p v-if="group.isComplete">{{ group.lastChecked }}</p>
-                        <button class="btn" @click="deleteGroup(group.id)">Delete</button>
+                        <button class="btn" v-if="items"  @click="deleteNoteGroup(group.id)">Delete</button>
                     </div>
                 </div>
             </div>

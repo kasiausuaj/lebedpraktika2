@@ -47,6 +47,7 @@ const app = new Vue({
     }
   },
   methods: {
+
     saveData: function() {
       const data = {
         firstColumn: this.firstColumn,
@@ -61,6 +62,12 @@ const app = new Vue({
       if (index !== -1) {
         this.thirdColumn.splice(index, 1);
       }
+    },
+    deleteNoteGroup(groupId) {
+      this.firstColumn = this.firstColumn.filter(group => group.id !== groupId);
+      this.secondColumn = this.secondColumn.filter(group => group.id !== groupId);
+      this.thirdColumn = this.thirdColumn.filter(group => group.id !== groupId);
+      this.saveDataToLocalStorage();
     },
     updateProgress: function(card, item) {
       const checkedCount = card.items.filter(item => item.checked).length;
