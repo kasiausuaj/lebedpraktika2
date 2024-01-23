@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/vue.js" defer></script>
-    <script src="./js/script.js" defer></script>
+    <script src="./js/vue.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <title>Хранение заметок</title>
 </head>
-
 <body>
-    <h1 class="title">Хранение заметок</h1>
+<h1 class="title">Хранение заметок</h1>
     <div id="app">
         <form class="cardForm" @submit.prevent="addItem">
             <p>
                 <label for="NoteTitle">Title:</label>
-                <input class="titlenote" id="NoteTitle" v-model="noteTitle" placeholder="Title" required>
+                <input class="titlenote" id="NoteTitle" v-model="noteTitle" placeholder="title" required>
             </p>
             <p v-for="(item, index) in items" :key="index">
                 <label>{{ `Action ${index + 1}:` }}</label>
@@ -29,12 +27,11 @@
         <div class="columns">
             <div class="column">
                 <h2>First Column</h2>
-                <div class="card" v-for="(group, groupIndex) in firstColumn" :key="group.id">
+                <div class="card" v-for="group in firstColumn" :key="group.id">
                     <h3>{{ group.noteTitle }}</h3>
                     <ul>
                         <li v-for="item in group.items" :key="item.id">
-                            <input type="checkbox" v-model="item.checked" :disabled="isDisabled(groupIndex, item)"
-                                @change="updateProgress(group)">
+                            <input type="checkbox" v-model="item.checked" :disabled="item.disabled" @change="updateProgress(group, item)">
                             {{ item.text }}
                         </li>
                     </ul>
@@ -46,32 +43,30 @@
                     <h3>{{ group.noteTitle }}</h3>
                     <ul>
                         <li v-for="item in group.items" :key="item.id">
-                            <input type="checkbox" v-model="item.checked" @change="updateProgress(group)" :disabled="isDisabled(groupIndex, item)"
-                            @change="updateProgress(group)">
+                            <input type="checkbox" v-model="item.checked" :disabled="item.disabled" @change="updateProgress(group, item)">
                             {{ item.text }}
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="column">
-                <h2>Third Column</h2>
+                <h2>Thirdy Column</h2>
                 <div v-for="group in thirdColumn" :key="group.id">
                     <div class="card">
                         <h3>{{ group.noteTitle }}</h3>
                         <ul>
                             <li v-for="item in group.items" :key="item.id">
-                                <input type="checkbox" v-model="item.checked" :disabled="isDisabled(groupIndex, item)" >
+                                <input type="checkbox" v-model="item.checked" :disabled="item.disabled">
                                 {{ item.text }}
                             </li>
                         </ul>
                         <p v-if="group.isComplete">{{ group.lastChecked }}</p>
-                        <button class="btn" @click="deleteNoteGroup(group.id)">Delete</button>
+                        <button class="btn" @click="deleteGroup(group.id)">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="./js/script.js"></script>
 </body>
-
 </html>
