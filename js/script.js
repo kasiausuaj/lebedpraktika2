@@ -57,11 +57,14 @@ const app = new Vue({
       };
       localStorage.setItem(storageKey, JSON.stringify(data));
     },
-    deleteGroup: function(groupId) {
-      const index = this.thirdColumn.findIndex(group => group.id === groupId);
-      if (index !== -1) {
-        this.thirdColumn.splice(index, 1);
-      }
+    canDeleteGroup: function(group) {
+      return group.items.every(item => !item.checked);
+    },
+    deleteNoteGroup(groupId) {
+      this.firstColumn = this.firstColumn.filter(group => group.id !== groupId);
+      this.secondColumn = this.secondColumn.filter(group => group.id !== groupId);
+      this.thirdColumn = this.thirdColumn.filter(group => group.id !== groupId);
+      this.saveDataToLocalStorage();
     },
     deleteNoteGroup(groupId) {
       this.firstColumn = this.firstColumn.filter(group => group.id !== groupId);
