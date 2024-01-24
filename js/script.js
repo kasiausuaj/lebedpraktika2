@@ -66,12 +66,6 @@ const app = new Vue({
       this.thirdColumn = this.thirdColumn.filter(group => group.id !== groupId);
       this.saveDataToLocalStorage();
     },
-    deleteNoteGroup(groupId) {
-      this.firstColumn = this.firstColumn.filter(group => group.id !== groupId);
-      this.secondColumn = this.secondColumn.filter(group => group.id !== groupId);
-      this.thirdColumn = this.thirdColumn.filter(group => group.id !== groupId);
-      this.saveDataToLocalStorage();
-    },
     updateProgress: function(card, item) {
       const checkedCount = card.items.filter(item => item.checked).length;
       const progress = (checkedCount / card.items.length) * 100;
